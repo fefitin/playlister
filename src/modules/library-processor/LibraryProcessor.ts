@@ -2,12 +2,14 @@ import { LibraryTrack } from "@/types/LibraryTrack";
 import { LibraryManagerAdaptor } from "@/adaptors/library-manager/LibraryManagerAdaptor.interface";
 import { LibraryStorageAdaptor } from "@/adaptors/library-storage/LibraryStorageAdaptor.interface";
 import { TrackAugmenterAdaptor } from "@/adaptors/track-augmenter/TrackAugmenterAdaptor.interface";
+import { LibraryEmbedderAdaptor } from "@/adaptors/library-embedder/LibraryEmbedderAdaptor.interface";
 
 export class LibraryProcessor {
   constructor(
     private readonly libraryManager: LibraryManagerAdaptor,
     private readonly storage: LibraryStorageAdaptor,
-    private readonly trackAugmenter: TrackAugmenterAdaptor
+    private readonly trackAugmenter: TrackAugmenterAdaptor,
+    private readonly embedder: LibraryEmbedderAdaptor
   ) {}
 
   /**
@@ -50,12 +52,23 @@ export class LibraryProcessor {
     console.log(
       `${index}/${total} Augmenting ${track.title} by ${track.artist}...`
     );
+
+    let augmentedTrack;
+
     try {
-      const augmentedTrack = await this.trackAugmenter.augmentTrack(track);
+      augmentedTrack = await this.trackAugmenter.augmentTrack(track);
       await this.storage.storeTrack(augmentedTrack);
     } catch (error) {
       console.error((error as Error).message);
       await this.storage.storeTrack(track);
+    }
+
+    try {
+      if (augmentedTrack) {
+        await this.embedder.embedTrack(augmentedTrack);
+      }
+    } catch (error) {
+      console.error((error as Error).message);
     }
   }
 }

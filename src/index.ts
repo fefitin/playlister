@@ -28,6 +28,6 @@ while (answer !== "exit") {
       break;
     case "exit":
       console.log("See you soon!");
-      break;
+      process.exit(0);
   }
 }
