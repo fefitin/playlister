@@ -54,7 +54,7 @@ export class LibraryProcessor {
       const augmentedTrack = await this.trackAugmenter.augmentTrack(track);
       await this.storage.storeTrack(augmentedTrack);
     } catch (error) {
-      console.error(error);
+      console.error((error as Error).message);
       await this.storage.storeTrack(track);
     }
   }
