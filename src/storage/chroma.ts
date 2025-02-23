@@ -6,7 +6,7 @@ export const chroma = new Chroma(
     model: "nomic-embed-text",
   }),
   {
-    collectionName: "tracks",
-    url: "http://localhost:8000",
+    collectionName: process.env.CHROMA_COLLECTION_NAME,
+    url: process.env.CHROMA_URL,
   }
 );

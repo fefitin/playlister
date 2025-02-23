@@ -65,6 +65,9 @@ export class LibraryProcessor {
 
     try {
       if (augmentedTrack) {
+        console.log(
+          `${index}/${total} Embedding ${augmentedTrack.title} by ${augmentedTrack.artist}...`
+        );
         await this.embedder.embedTrack(augmentedTrack);
       }
     } catch (error) {
