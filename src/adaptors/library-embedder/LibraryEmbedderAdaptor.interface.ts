@@ -15,4 +15,12 @@ export interface LibraryEmbedderAdaptor {
    * @param track Track to embed
    */
   embedTrack(track: AugmentedLibraryTrack): Promise<void>;
+
+  /**
+   * Retrieve tracks from the database
+   * @param query Query to search for
+   * @param limit Maximum number of tracks to retrieve
+   * @returns Track IDs
+   */
+  retrieveTrackIds(query: string, limit: number): Promise<string[]>;
 }

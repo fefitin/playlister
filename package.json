@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@inquirer/prompts": "^7.3.2",
+    "@langchain/anthropic": "^0.3.13",
     "@langchain/community": "^0.3.30",
     "@langchain/core": "^0.3.40",
     "@langchain/ollama": "^0.2.0",
@@ -46,6 +47,7 @@
     "ollama": "^0.5.13",
     "pg": "^8.13.3",
     "playwright": "^1.50.1",
+    "run-applescript": "^7.0.0",
     "searxng_search": "link:@langchain/community/tools/searxng_search",
     "zod": "^3.24.2",
     "zod-to-json-schema": "^3.24.1"

@@ -3,6 +3,7 @@
 import { select } from "@inquirer/prompts";
 import { importLibrary } from "./commands/importLibrary";
 import { embedLibrary } from "./commands/embedLibrary";
+import { generatePlaylist } from "./commands/generatePlaylist";
 
 let answer;
 
@@ -10,6 +11,11 @@ while (answer !== "exit") {
   answer = await select({
     message: "Select an action",
     choices: [
+      {
+        name: "Generate Playlist",
+        value: "generate",
+        description: "Generate a playlist based on a prompt",
+      },
       {
         name: "Import Library",
         value: "import",
@@ -29,6 +35,9 @@ while (answer !== "exit") {
   });
 
   switch (answer) {
+    case "generate":
+      await generatePlaylist();
+      break;
     case "import":
       await importLibrary();
       break;

@@ -20,4 +20,9 @@ export class LangchainLibraryEmbedder extends BaseLibraryEmbedder {
       throw new Error(`Failed to embed track: ${(e as Error).message}`);
     }
   }
+
+  async retrieveTrackIds(query: string, limit: number) {
+    const results = await this.vectorStore.similaritySearch(query, limit);
+    return results.map((result) => String(result.id));
+  }
 }

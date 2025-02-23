@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import { LibraryPostgresStorage } from "@/adaptors/library-storage/LibraryPostgresStorage";
 
 export const storage = new LibraryPostgresStorage({

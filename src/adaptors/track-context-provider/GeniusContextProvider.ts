@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import { Nilsimsa } from "nilsimsa";
 import { load } from "cheerio";
 import { SearxngSearch } from "@langchain/community/tools/searxng_search";

@@ -1,9 +1,6 @@
 import { ChatOllama } from "@langchain/ollama";
-import { Chroma } from "@langchain/community/vectorstores/chroma";
-import { OllamaEmbeddings } from "@langchain/ollama";
 import { LangchainLibraryEmbedder } from "@/adaptors/library-embedder/LangchainLibraryEmbedder";
 import { AppleMusicLibraryAdaptor } from "@/adaptors/library-manager/AppleMusicLibraryAdaptor";
-import { LibraryPostgresStorage } from "@/adaptors/library-storage/LibraryPostgresStorage";
 import { AITrackAugmenter } from "@/adaptors/track-augmenter/AITrackAugmenter";
 import { GeniusContextProvider } from "@/adaptors/track-context-provider/GeniusContextProvider";
 import { LibraryProcessor } from "@/modules/library-processor/LibraryProcessor";

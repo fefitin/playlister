@@ -117,6 +117,27 @@ export class LibraryPostgresStorage implements LibraryStorageAdaptor {
   }
 
   /**
+   * Retrieves a track from the database by platform ID
+   * @param platformTrackId ID of the track to retrieve
+   * @returns AugmentedLibraryTrack object
+   * @throws Error if storage is not connected
+   */
+  async getTrackByPlatformId(platformTrackId: string) {
+    if (!this.client) {
+      throw new Error("LibraryPostgresStorage not connected");
+    }
+
+    const query = `
+      SELECT * FROM tracks
+      WHERE platform_track_id = $1
+      LIMIT 1
+    `;
+
+    const result = await this.client.query(query, [platformTrackId]);
+    return this.toAugmentedLibraryTrack(result.rows[0]);
+  }
+
+  /**
    * Converts a database row to an AugmentedLibraryTrack object
    * @param row Database row to convert
    * @returns AugmentedLibraryTrack object
