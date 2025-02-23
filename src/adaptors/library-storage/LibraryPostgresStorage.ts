@@ -134,7 +134,9 @@ export class LibraryPostgresStorage implements LibraryStorageAdaptor {
     `;
 
     const result = await this.client.query(query, [platformTrackId]);
-    return this.toAugmentedLibraryTrack(result.rows[0]);
+    return result.rows.length > 0
+      ? this.toAugmentedLibraryTrack(result.rows[0])
+      : null;
   }
 
   /**

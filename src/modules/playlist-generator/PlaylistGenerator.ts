@@ -19,7 +19,11 @@ export class PlaylistGenerator {
     const tracks = await Promise.all(
       trackIds.map((id) => this.storage.getTrackByPlatformId(id))
     );
-    return this.generateWithAI(name, prompt, tracks);
+    return this.generateWithAI(
+      name,
+      prompt,
+      tracks.filter((track) => track !== null)
+    );
   }
 
   private async generateWithAI(
@@ -43,9 +47,10 @@ export class PlaylistGenerator {
       console.error(`Failed to create playlist: ${(error as Error).message}`);
     }
 
-    return Promise.all(
+    const generated = await Promise.all(
       trackIds.map((id) => this.storage.getTrackByPlatformId(id))
     );
+    return generated.filter((track) => track !== null);
   }
 
   private generateMessages(
