@@ -75,17 +75,23 @@ You can run the tool with the following command:
 playlister
 ```
 
-### Import library
+### Import Library
 
 You must first download your Apple Music library in XML format using File > Library > Export Library.
 
 Run the tool, select the `Import Library` option and enter the path to the XML file.
 
-Your library will be processed and every track with be augmented with additional information retrieved from the Internet (style, tempo, etc.).
+Your library will be processed and every track with be augmented with additional information retrieved from the Internet (style, tempo, etc.). This can take some time, so be patient.
 
 All your augmented tracks will be indexed in your Postgres database and embedded in your Chroma DB.
 
-### Generate playlist
+### Embed Library
+
+Your library is automatically embedded when you import it.
+
+You can use this option if you want to re-embed it for some reason (eg. to test a different embedding model). It will embed all the tracks you have on your Postgres database, so it can skip the augmentation process.
+
+### Generate Playlist
 
 You can generate a playlist based on a specific prompt. You can describe a mood, an event or anything else you want.
 
