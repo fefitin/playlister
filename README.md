@@ -12,6 +12,8 @@ This tool can be used to generate playlists in Apple Music using AI.
 
 This tool was tested on macOS Sequoia with Apple Music 1.5.2.56.
 
+ChromaDB and SearxNg were installed using Docker.
+
 ## Installation
 
 Set values for all the environment variables defined in `.env.example`.
