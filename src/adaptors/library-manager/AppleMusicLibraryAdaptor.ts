@@ -53,7 +53,9 @@ export class AppleMusicLibraryAdaptor implements LibraryManagerAdaptor {
           ),
         };
 
-        tracks.push(track);
+        if (track.location) {
+          tracks.push(track);
+        }
       }
     });
 
