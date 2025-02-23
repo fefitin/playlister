@@ -2,6 +2,7 @@
 
 import { select } from "@inquirer/prompts";
 import { importLibrary } from "./commands/importLibrary";
+import { embedLibrary } from "./commands/embedLibrary";
 
 let answer;
 
@@ -15,6 +16,11 @@ while (answer !== "exit") {
         description: "Import your library from a file",
       },
       {
+        name: "Embed Library",
+        value: "embed",
+        description: "Embed your imported library in a vector database",
+      },
+      {
         name: "Exit",
         value: "exit",
         description: "Exit the application",
@@ -25,6 +31,9 @@ while (answer !== "exit") {
   switch (answer) {
     case "import":
       await importLibrary();
+      break;
+    case "embed":
+      await embedLibrary();
       break;
     case "exit":
       console.log("See you soon!");

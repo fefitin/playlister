@@ -98,4 +98,47 @@ export class LibraryPostgresStorage implements LibraryStorageAdaptor {
       throw new Error("Failed to store track");
     }
   }
+
+  /**
+   * Retrieves all tracks from the database
+   * @returns Array of AugmentedLibraryTrack objects
+   * @throws Error if storage is not connected
+   */
+  async getTracks() {
+    if (!this.client) {
+      throw new Error("LibraryPostgresStorage not connected");
+    }
+
+    const query = `
+      SELECT * FROM tracks
+    `;
+    const result = await this.client.query(query);
+    return result.rows.map(this.toAugmentedLibraryTrack);
+  }
+
+  /**
+   * Converts a database row to an AugmentedLibraryTrack object
+   * @param row Database row to convert
+   * @returns AugmentedLibraryTrack object
+   */
+  private toAugmentedLibraryTrack(
+    row: Record<string, any>
+  ): AugmentedLibraryTrack {
+    return {
+      platformTrackId: row.platform_track_id,
+      title: row.title,
+      artist: row.artist,
+      album: row.album,
+      totalTime: row.total_time,
+      year: row.year,
+      genre: row.genre,
+      location: row.location,
+      themes: row.themes,
+      keywords: row.keywords,
+      mood: row.mood,
+      bpm: row.bpm,
+      tempo: row.tempo,
+      style: row.style,
+    };
+  }
 }
