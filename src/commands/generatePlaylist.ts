@@ -21,7 +21,7 @@ export async function generatePlaylist() {
   const playlistGenerator = new PlaylistGenerator(
     storage,
     new LangchainLibraryEmbedder(chroma),
-    new ChatAnthropic({ model: process.env.ANTHROPIC_MODEL, temperature: 0.5 }),
+    new ChatAnthropic({ model: process.env.ANTHROPIC_MODEL, temperature: 1 }),
     new AppleMusicPlaylistManager()
   );
 
